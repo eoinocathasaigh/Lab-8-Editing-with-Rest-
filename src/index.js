@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+//Importing the installed react bootstrap - used for styling
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 //First file to be interpereted - simply imports everything to be used
 
