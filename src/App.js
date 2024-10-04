@@ -15,15 +15,19 @@ function App() {
     //Can enter business logic here too
 
     //NavBar element enables routing between different pages
+    //The following happens when I navigate between pages
+    // - By default I land on home so I am shown the "Content" element
+    // - When I navigate to "read" - /read and I am shown the "Footer" element
+    // - When I navigate to "Create" - /create I am shown the "Header" element
+
     <div className="App">
       <Router>
         <NavigationBar/>
         <Routes>
-          <Route path="/home" element={<Content />} />
-          <Route path="/read" element={<h1>Read Component</h1>} />
-          <Route path="/create" element={<h1>Create Component</h1>} />
+          <Route path="/" element={<Content />} />
+          <Route path="/read" element={<Footer/>} />
+          <Route path="/create" element={<Header/>} />
         </Routes>
-        <Footer></Footer>
       </Router>
     </div>
   );
