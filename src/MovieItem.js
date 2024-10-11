@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 const MovieItem = (props) =>{
@@ -13,13 +12,17 @@ const MovieItem = (props) =>{
     
     return(
         <div>
-            <Card>
+            {/*This card format is exactly the same as simply 
+            Printing out each element into a h3 or an image
+            The main difference is that this time its formatted better into individual cards*/}
+
+            {/*This method is the bootstrap variant of the cards format
+            Requires importing the card component from the react bootstrap*/}
+            <Card style={{ width: '18rem' }}>
                 <Card.Header>{props.myMovie.Title}</Card.Header>
                 <Card.Body>
-                <blockquote className="blockquote mb-0">
-                    <img src={props.myMovie.Poster} alt={props.myMovie.Title} />
+                    <Card.Img variant="top" src={props.myMovie.Poster} />
                     <footer>{props.myMovie.Year}</footer>
-                </blockquote>
                 </Card.Body>
             </Card>
         </div>
