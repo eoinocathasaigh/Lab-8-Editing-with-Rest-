@@ -1,10 +1,13 @@
+import MovieItem from "./MovieItem";
+
 const Movies = (props)=>{
-    //Passing data from parent to child using 
-    return(
-        <div>
-            <h3>Hello from the Movie component</h3>
-            {console.log(props.myMovies)}
-        </div>
+    //Passing data from parent to child using props
+    return props.myMovies.map(
+        (movie)=>{
+            //Takes each individual object and splits up into
+            //Different items we can access
+            return <MovieItem myMovie={movie}/>
+        }
     )
 }
 

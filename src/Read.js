@@ -1,5 +1,5 @@
 import Movies from "./Movies";
-
+//Importing our Movies component
 const Read = ()=>{
     const data = [
         {
