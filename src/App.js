@@ -5,6 +5,7 @@ import Content from './content'; //Imports our content from our other file
 import Header from './Header';
 import Footer from './Footer';
 import Read from './Read';
+import Create from './Create';
 
 //Routing logic for navigation between pages
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -27,7 +28,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Content />} />
           <Route path="/read" element={<Read />} />
-          <Route path="/create" element={<Header/>} />
+          <Route path="/create" element={<Create/>} />
         </Routes>
       </Router>
     </div>

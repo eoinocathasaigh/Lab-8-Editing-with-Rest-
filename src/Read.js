@@ -1,5 +1,7 @@
 import Movies from "./Movies";
 //Importing our Movies component
+
+//Read component holds an array of JSON data we will pass to our movies component to use from there
 const Read = ()=>{
     const data = [
         {
@@ -27,6 +29,7 @@ const Read = ()=>{
     return(
         <div>
             <h3>Hello from the Read component</h3>
+            {/*We create the variable "myMovies" for our movies component and pass it the data we have in this class*/}
             <Movies myMovies ={data}/>
         </div>
     )

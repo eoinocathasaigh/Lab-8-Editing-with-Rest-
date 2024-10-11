@@ -6,6 +6,12 @@ const MovieItem = (props) =>{
             <h3>{props.myMovie.Title}</h3>
             {/*Now I can also display the posters*/}
             <img src={props.myMovie.Poster}></img>
+            {/*Year the movie came out*/}
+            <h3>{props.myMovie.Year}</h3>
+            {/*The Type of movie it is*/}
+            <h3>{props.myMovie.Type}</h3>
+            {/*Its Imdb ID*/}
+            <h3>{props.myMovie.imdbID}</h3>
         </div>
     )
 }
