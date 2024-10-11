@@ -1,17 +1,27 @@
+import { useEffect } from 'react';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+
 const MovieItem = (props) =>{
+
+    //Example of a useEffect
+    //Can do a similar thing eg React when something changes
+    //Right now its doing nothing
+    useEffect(() => {
+        console.log("Movie Item:", props.myMovie);
+      }, [props.myMovie]); // Only run this effect when the mymovie prop changes
+    
     return(
         <div>
-            {/*Whatever variable name we have in our parent directory must match here*/}
-            {/*Here I refer to the props, then tell them the variable and finally the set of data i'd like to display*/}
-            <h3>{props.myMovie.Title}</h3>
-            {/*Now I can also display the posters*/}
-            <img src={props.myMovie.Poster}></img>
-            {/*Year the movie came out*/}
-            <h3>{props.myMovie.Year}</h3>
-            {/*The Type of movie it is*/}
-            <h3>{props.myMovie.Type}</h3>
-            {/*Its Imdb ID*/}
-            <h3>{props.myMovie.imdbID}</h3>
+            <Card>
+                <Card.Header>{props.myMovie.Title}</Card.Header>
+                <Card.Body>
+                <blockquote className="blockquote mb-0">
+                    <img src={props.myMovie.Poster} alt={props.myMovie.Title} />
+                    <footer>{props.myMovie.Year}</footer>
+                </blockquote>
+                </Card.Body>
+            </Card>
         </div>
     )
 }
