@@ -1,36 +1,44 @@
 import Movies from "./Movies";
+import { useEffect, useState } from "react";
+import axios from "axios";
 //Importing our Movies component
 
 //Read component holds an array of JSON data we will pass to our movies component to use from there
 const Read = ()=>{
-    const data = [
-        {
-        "Title": "Avengers: Infinity War",
-        "Year": "2018",
-        "imdbID": "tt4154756",
-        "Type": "movie",
-        "Poster": "https://m.media-amazon.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZTgwNzY1MTUwNTM@._V1_SX300.jpg"
-      },
-      {
-        "Title": "Captain America: Civil War",
-        "Year": "2016",
-        "imdbID": "tt3498820",
-        "Type": "movie",
-        "Poster": "https://m.media-amazon.com/images/M/MV5BMjQ0MTgyNjAxMV5BMl5BanBnXkFtZTgwNjUzMDkyODE@._V1_SX300.jpg"
-      },
-      {
-        "Title": "World War Z",
-        "Year": "2013",
-        "imdbID": "tt0816711",
-        "Type": "movie",
-        "Poster": "https://m.media-amazon.com/images/M/MV5BNDQ4YzFmNzktMmM5ZC00MDZjLTk1OTktNDE2ODE4YjM2MjJjXkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg"
-      }
-    ];
+  //We create an array called movies
+  //Give a method to set movies
+  //And give it a default state of useState
+  //State Variable
+
+  //useState Allows us to state variables to functional components
+  //Essentially another way for us to handle data in the class
+  const[movies, setMovies] = useState([]);
+
+    //Http work can be done through this method - Needs to be imported first above
+    //Allows us to synchronize with an external system
+    useEffect(
+      ()=>{
+        //Makes http request with the get method
+        //This is the exact same as previous way except we're getting it from an api
+        //Done in the background - app doesnt hang
+        //Result is a promise - need to put a .then() and .catch() - its an asynchronous request
+        axios.get('https://jsonblob.com/api/jsonblob/1287718524221775872')
+        .then((response)=>{
+          console.log(response.data);
+          setMovies(response.data.movies);
+        })//Callback function - done when request is completed
+        .catch(
+          (error)=>{
+            console.log(error);
+          }
+        )//Something went wrong - eg server fails
+      },[] // - Doing this calms the array to stop it from being called multiple times
+    );
     return(
         <div>
             <h3>Hello from the Read component</h3>
             {/*We create the variable "myMovies" for our movies component and pass it the data we have in this class*/}
-            <Movies myMovies ={data}/>
+            <Movies myMovies ={movies}/>
         </div>
     )
 }
