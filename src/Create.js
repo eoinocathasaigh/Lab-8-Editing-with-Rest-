@@ -2,12 +2,16 @@ import { useState } from "react";//Need to import useState first to use it
 
 const Create = ()=>{
     //We do everything in this class thanks to Axios
-    //Allows us to handle http requests & responsed
+    //Allows us to handle http requests & responses
+    //Axios allows us to send asynchronous http requests(get, post)
+    //Sends them to endpoints to handle responses
 
     //We create an array called title
     //Give a method to set the title
     //And give it a default state of useState
     //State Variable
+    //useState allows us to add state variables to functional components
+    //format = const [state, setState] = useState(initialValue);
     const[title, setTitle] = useState('');
     const[year, setYear] = useState('');
     const[poster, setPoster] = useState('');
@@ -22,10 +26,11 @@ const Create = ()=>{
         console.log(title);
         console.log(year);
         console.log(poster);
-
     }
     return(
         //Simple component to be displayed in app.js
+        //Each field is handled using reacts useState
+        //Each input will be logged to the console upon submission
         <div>
             {/*Getting the title for our movie and saving it to the server*/}
             <h3>Hello from the Create component</h3>
