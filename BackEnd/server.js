@@ -25,7 +25,7 @@ app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
     console.log(req.body.title);
-    res.send('Hello World');
+    res.send('Movie Added');
 });
 
 //Handling sending back data when user goes to api/movies
@@ -60,8 +60,10 @@ app.get('/api/movies', (req, res) => {
 });
 
 //Method for sending data back to server
+//This will basicaslly listen constantly for the response being sent back and will display the appropriate message
 app.post('/api/movies', (req, res)=>{
-    res.send("Movie Added!");
+    console.log(req.body.title);
+    res.send('Movie Added');
 })
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);

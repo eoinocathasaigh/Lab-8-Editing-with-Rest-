@@ -1,5 +1,5 @@
 import { useState } from "react";//Need to import useState first to use it
-
+import axios from "axios";
 const Create = ()=>{
     //We do everything in this class thanks to Axios
     //Allows us to handle http requests & responses
@@ -19,13 +19,17 @@ const Create = ()=>{
     //Used to handle when our submit button is pressed
     //Takes in the element, prevents it from repeating
     //Then it logs it to the console
+    //Modified version now adds it to the server too
     const handleSubmit = (e) => {
         //Prevents the function from being called multiple times
         e.preventDefault();
         //Outputting the title entered by the user to the console
-        console.log(title);
-        console.log(year);
-        console.log(poster);
+        const movie = {title, year, poster};
+        console.log(movie);
+
+        axios.post('http://localhost:4000/api/movies', movie)
+        .then((res) => console.log(res.data))
+        .catch((err) => console.log(err.data));
     }
     return(
         //Simple component to be displayed in app.js
@@ -56,7 +60,7 @@ const Create = ()=>{
             {/*Getting the poster for our movie and saving it to the server*/}
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label>Add a movie Title: </label>
+                    <label>Add a movie Poster: </label>
                     <input type="text"
                     className="form-control"
                     value={poster}
