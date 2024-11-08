@@ -22,10 +22,10 @@ const Read = ()=>{
         //This is the exact same as previous way except we're getting it from an api
         //Done in the background - app doesnt hang
         //Result is a promise - need to put a .then() and .catch() - its an asynchronous request
-        axios.get('https://jsonblob.com/api/jsonblob/1287718524221775872')
+        axios.get('http://localhost:4000/api/movies')
         .then((response)=>{
           console.log(response.data);
-          setMovies(response.data.movies);
+          setMovies(response.data.myMovies);
         })//Callback function - done when request is completed
         .catch(
           (error)=>{

@@ -5,7 +5,26 @@ const express = require('express');
 const app = express();
 const port = 4000;
 
+//Code to enable cors for this application 
+//Cors basically restricts web pages from making requests to different ports
+//Without configuring this the browser would block us from accessing it
+const cors = require('cors');
+app.use(cors());
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+//Allow us to parse json out of a http request
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 app.get('/', (req, res) => {
+    console.log(req.body.title);
     res.send('Hello World');
 });
 
@@ -40,6 +59,10 @@ app.get('/api/movies', (req, res) => {
     res.status(200).json({myMovies:movies});
 });
 
+//Method for sending data back to server
+app.post('/api/movies', (req, res)=>{
+    res.send("Movie Added!");
+})
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
