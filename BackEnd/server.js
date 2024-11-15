@@ -24,6 +24,7 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb+srv://admin:admin@cluster0.e9tim.mongodb.net/DB11');
 
 //Creating a data model
+//This will help us store data to send to the database
 const movieSchema = new mongoose.Schema({
   title: String,
   year: String,
@@ -64,9 +65,11 @@ app.post('/api/movies', async(req, res)=>{
 
     const{title,year,poster} = req.body;
 
+    //This enables us to access the movie model & save the entered details
     const newMovie = new movieModel({title, year, poster});
     await newMovie.save();
 
+    //Response Message
     res.status(201).json({ message: 'Movie created successfully', movie: newMovie });
 })
 
