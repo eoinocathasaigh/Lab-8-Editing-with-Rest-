@@ -18,6 +18,23 @@ app.use(function(req, res, next) {
   next();
 });
 
+//Connection code for our database
+const mongoose = require('mongoose');
+//Connects us to our database using the connection string
+mongoose.connect('mongodb+srv://admin:admin@cluster0.e9tim.mongodb.net/DB11');
+
+//Creating a data model
+const movieSchema = new mongoose.Schema({
+  title: String,
+  year: String,
+  poster: String
+});
+
+//Making the movie model & adding to it
+//Stores documents in a collection called myMovies
+//Is apart of the movieSchema
+const movieModel = new mongoose.model('myMoivies', movieSchema);
+
 //Allow us to parse json out of a http request
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
