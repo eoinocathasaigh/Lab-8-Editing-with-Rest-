@@ -46,34 +46,15 @@ app.get('/', (req, res) => {
 });
 
 //Handling sending back data when user goes to api/movies
-app.get('/api/movies', (req, res) => {
-    const movies = [
-        {
-          "Title": "Avengers: Infinity War (server)",
-          "Year": "2018",
-          "imdbID": "tt4154756",
-          "Type": "movie",
-          "Poster": "https://m.media-amazon.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZTgwNzY1MTUwNTM@._V1_SX300.jpg"
-        },
-        {
-          "Title": "Captain America: Civil War (server)",
-          "Year": "2016",
-          "imdbID": "tt3498820",
-          "Type": "movie",
-          "Poster": "https://m.media-amazon.com/images/M/MV5BMjQ0MTgyNjAxMV5BMl5BanBnXkFtZTgwNjUzMDkyODE@._V1_SX300.jpg"
-        },
-        {
-          "Title": "World War Z (server)",
-          "Year": "2013",
-          "imdbID": "tt0816711",
-          "Type": "movie",
-          "Poster": "https://m.media-amazon.com/images/M/MV5BNDQ4YzFmNzktMmM5ZC00MDZjLTk1OTktNDE2ODE4YjM2MjJjXkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg"
-        }
-    ];
-    //This sends back the following:
-    //- A status code denoting success
-    //- The movies data in the form of json
-    res.status(200).json({myMovies:movies});
+app.get('/api/movies', async(req, res) => {
+  //Await will basically prevent code from going any
+  //further until this is completed
+  const movies = await movieModel.find({});
+
+  //This sends back the following:
+  //- A status code denoting success
+  //- The movies data in the form of json
+  res.status(200).json({myMovies:movies});
 });
 
 //Method for sending data back to server
@@ -88,6 +69,39 @@ app.post('/api/movies', async(req, res)=>{
 
     res.status(201).json({ message: 'Movie created successfully', movie: newMovie });
 })
+
+//Performing another search
+//- This search is listening for documents specific ids
+//- Looking for a specific perameter 
+app.get('/api/movie/:id', async (req, res) => {
+  //Essentially pulling the parameter out of the id
+  //This also needs an await as we just need to wait for things to finish
+  const movie = await movieModel.findById(req.params.id);
+  res.send(movie);
+});
+
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
+/*
+{
+  "Title": "Avengers: Infinity War (server)",
+  "Year": "2018",
+  "imdbID": "tt4154756",
+  "Type": "movie",
+  "Poster": "https://m.media-amazon.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZTgwNzY1MTUwNTM@._V1_SX300.jpg"
+},
+{
+  "Title": "Captain America: Civil War (server)",
+  "Year": "2016",
+  "imdbID": "tt3498820",
+  "Type": "movie",
+  "Poster": "https://m.media-amazon.com/images/M/MV5BMjQ0MTgyNjAxMV5BMl5BanBnXkFtZTgwNjUzMDkyODE@._V1_SX300.jpg"
+},
+{
+  "Title": "World War Z (server)",
+  "Year": "2013",
+  "imdbID": "tt0816711",
+  "Type": "movie",
+  "Poster": "https://m.media-amazon.com/images/M/MV5BNDQ4YzFmNzktMmM5ZC00MDZjLTk1OTktNDE2ODE4YjM2MjJjXkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg"
+}*/

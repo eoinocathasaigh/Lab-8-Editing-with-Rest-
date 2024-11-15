@@ -19,10 +19,10 @@ const MovieItem = (props) =>{
             {/*This method is the bootstrap variant of the cards format
             Requires importing the card component from the react bootstrap*/}
             <Card style={{ width: '18rem' }}>
-                <Card.Header>{props.myMovie.Title}</Card.Header>
+                <Card.Header>{props.myMovie.title}</Card.Header>
                 <Card.Body>
-                    <Card.Img variant="top" src={props.myMovie.Poster} />
-                    <footer>{props.myMovie.Year}</footer>
+                    <Card.Img variant="top" src={props.myMovie.poster} />
+                    <footer>{props.myMovie.year}</footer>
                 </Card.Body>
             </Card>
         </div>
