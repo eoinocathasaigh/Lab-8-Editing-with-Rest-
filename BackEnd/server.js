@@ -78,9 +78,15 @@ app.get('/api/movies', (req, res) => {
 
 //Method for sending data back to server
 //This will basicaslly listen constantly for the response being sent back and will display the appropriate message
-app.post('/api/movies', (req, res)=>{
+app.post('/api/movies', async(req, res)=>{
     console.log(req.body.title);
-    res.send('Movie Added');
+
+    const{title,year,poster} = req.body;
+
+    const newMovie = new movieModel({title, year, poster});
+    await newMovie.save();
+
+    res.status(201).json({ message: 'Movie created successfully', movie: newMovie });
 })
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
