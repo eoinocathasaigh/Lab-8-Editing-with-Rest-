@@ -6,6 +6,7 @@ import Header from './Header';
 import Footer from './Footer';
 import Read from './Read';
 import Create from './Create';
+import Edit from './edit'
 
 //Routing logic for navigation between pages
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -29,6 +30,7 @@ function App() {
           <Route path="/" element={<Content />} />
           <Route path="/read" element={<Read />} />
           <Route path="/create" element={<Create/>} />
+          <Route path="/edit/:id" element={<Edit />} />
         </Routes>
       </Router>
     </div>
