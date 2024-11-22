@@ -83,6 +83,20 @@ app.get('/api/movie/:id', async (req, res) => {
   res.send(movie);
 });
 
+//The following will listen for the app.put method
+//-Editing
+app.get('api/movie/:id', async (req, res)=>{
+  //Finding the movie needs to be async since we dont know how long it will take to get
+  const movie = await movieModel.findByIdAndUpdate(req.params.id, req.body, {new:true});
+  res.send(movie);
+})
+
+//Editing the movies - Ensures the data is set properly
+app.put('/api/movie/:id', async (req, res) => {
+  let movie = await movieModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
+  res.send(movie);
+});
+
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });

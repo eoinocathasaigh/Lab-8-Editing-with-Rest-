@@ -14,6 +14,7 @@ const Edit = ()=>{
     const[title, setTitle] = useState('');
     const[year, setYear] = useState('');
     const[poster, setPoster] = useState('');
+    const navigate = useNavigate();
 
     useEffect(()=>{
         //Makes http request method at a specific movie url
@@ -31,10 +32,6 @@ const Edit = ()=>{
         });
     }, []);
 
-    //Used to handle when our submit button is pressed
-    //Takes in the element, prevents it from repeating
-    //Then it logs it to the console
-    //Modified version now adds it to the server too
     const handleSubmit = (e) => {
         //Prevents the function from being called multiple times
         e.preventDefault();
@@ -42,9 +39,11 @@ const Edit = ()=>{
         const movie = {title, year, poster};
         console.log(movie);
 
-        //axios.post('http://localhost:4000/api/movie', movie)
-        //.then((res) => console.log(res.data))
-        //.catch((err) => console.log(err.data));
+        axios.put('http://localhost:4000/api/movie/'+id, movie)
+        .then((res)=>{console.log(res.data);
+            navigate('/read');
+        })
+        .catch((err) => console.log(err.data))
     }
     return(
         //Simple component to be displayed in app.js
