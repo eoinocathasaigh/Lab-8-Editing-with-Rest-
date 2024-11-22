@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
+import { Link } from 'react-router-dom';
 
 const MovieItem = (props) =>{
 
@@ -24,6 +25,9 @@ const MovieItem = (props) =>{
                     <Card.Img variant="top" src={props.myMovie.poster} />
                     <footer>{props.myMovie.year}</footer>
                 </Card.Body>
+                {/*We want to redirect the user to a different url when they click this button*/}
+                {/*The props.myMovies._id will give us the unique id for each individual movie*/}
+                <Link className="btn btn-primary" to={"/edit/"+props.myMovie._id}>Edit</Link>
             </Card>
         </div>
     )
