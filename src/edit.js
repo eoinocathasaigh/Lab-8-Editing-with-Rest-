@@ -39,6 +39,7 @@ const Edit = ()=>{
         const movie = {title, year, poster};
         console.log(movie);
 
+        //This will effectively re route us back the original movies page when we're done editing
         axios.put('http://localhost:4000/api/movie/'+id, movie)
         .then((res)=>{console.log(res.data);
             navigate('/read');
