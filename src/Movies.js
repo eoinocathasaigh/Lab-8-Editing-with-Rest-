@@ -8,7 +8,7 @@ const Movies = (props)=>{
         (movie)=>{
             //Takes each individual object and splits up into
             //Different items we can access
-            return <MovieItem myMovie={movie} key={movie._id}/>
+            return <MovieItem myMovie={movie} key={movie._id} Reload={props.ReloadData}/>
         }
     )
 }

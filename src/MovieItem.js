@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
+import axios from 'axios'; //Promise based http client
+import Button from 'react-bootstrap/Button';
 
 const MovieItem = (props) =>{
 
@@ -11,6 +13,18 @@ const MovieItem = (props) =>{
         console.log("Movie Item:", props.myMovie);
       }, [props.myMovie]); // Only run this effect when the mymovie prop changes
     
+      const handleDelete = (e) =>{
+        e.preventDefault();//Stops it from being called multiple times
+        
+        //Deleting the movie based on the url
+        axios.delete('http://localhost:4000/api/movie/' + props.myMovie._id)
+        .then(() => {
+            props.Reload();
+        })
+        .catch((error) =>{
+            console.log("Error deleting movie: ", error);
+        })
+      }
     return(
         <div>
             {/*This card format is exactly the same as simply 
@@ -28,6 +42,7 @@ const MovieItem = (props) =>{
                 {/*We want to redirect the user to a different url when they click this button*/}
                 {/*The props.myMovies._id will give us the unique id for each individual movie*/}
                 <Link className="btn btn-primary" to={"/edit/"+props.myMovie._id}>Edit</Link>
+                <Button className='btn btn-danger' onClick={handleDelete}>Delete</Button>
             </Card>
         </div>
     )
