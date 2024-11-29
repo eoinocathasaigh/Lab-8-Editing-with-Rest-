@@ -38,6 +38,7 @@ const movieModel = new mongoose.model('myMoivies', movieSchema);
 
 //Allow us to parse json out of a http request
 const bodyParser = require('body-parser');
+const { Navigate } = require('react-router-dom');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
